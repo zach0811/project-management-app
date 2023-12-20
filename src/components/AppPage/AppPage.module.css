@@ -1,0 +1,8 @@
+.main {
+height: 100vh;
+margin-top: 2rem; /* Set top margin to 2rem */
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem; 
+}
+

@@ -1,8 +1,11 @@
+import styles from "./Sidebar.module.css";
+
 export const Sidebar = () => {
+  const handleAddProject = () => {};
   return (
-    <div className="">
+    <div className={styles.main}>
       <h1>Your Projects</h1>
-      <button>+ Add Project</button>
+      <button onClick={handleAddProject}>+ Add Project</button>
     </div>
   );
 };
