@@ -1,21 +1,21 @@
-export const NewProject = () => {
+import { Input } from "../Input";
 
+export const NewProject = () => {
   const handleCancelProject = () => {};
 
   const handleSaveProject = () => {};
 
   return (
     <div>
-      <div>
+      <menu>
         <button onClick={handleCancelProject}>Cancel</button>
         <button onClick={handleSaveProject}>Save</button>
+      </menu>
+      <div>
+        <Input label="Title" />
+        <Input label="Description" textarea />
+        <Input label="Start Date" type="date" />
       </div>
-      <h1>Title</h1>
-      <input></input>
-      <h1>Description</h1>
-      <input></input>
-      <h1>Due Date</h1>
-      <input type="date"></input>
     </div>
   );
 };
