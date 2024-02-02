@@ -1,8 +1,8 @@
-import { Sidebar } from "../Sidebar/Sidebar";
-import { StartPage } from "../StartPage/StartPage";
-import { NewProject } from "../AddProject/NewProject";
+import { Sidebar } from "./Sidebar";
+import { NewProject } from "./NewProject";
 import { useState } from "react";
-import { NoProjectSelected } from "../NoProjectSelected";
+import { NoProjectSelected } from "./NoProjectSelected";
+import { SelectedProject } from "./SelectedProject";
 
 export const AppPage = () => {
   const [projectState, setProjectState] = useState({
@@ -20,11 +20,32 @@ export const AppPage = () => {
     });
   };
 
+  const handleDeleteProject = () => {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId
+        ),
+      };
+    });
+  };
+
   const handleCancelAddProject = () => {
     setProjectState((prevState) => {
       return {
         ...prevState,
         selectedProjectId: undefined,
+      };
+    });
+  };
+
+  const handleSelectProject = (id) => {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: id,
       };
     });
   };
@@ -46,15 +67,19 @@ export const AppPage = () => {
 
   console.log("projectState", projectState);
 
-  let content;
+  const selectProject = projectState.projects.find(
+    (project) => project.id === projectState.selectedProjectId
+  );
+
+  let content = (
+    <SelectedProject project={selectProject} onDelete={handleDeleteProject} />
+  );
 
   if (projectState.selectedProjectId === null) {
     content = (
       <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
     );
-  } else if (projectState.selectedProjectId) {
-    content = <StartPage />;
-  } else {
+  } else if (projectState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
   return (
@@ -62,6 +87,7 @@ export const AppPage = () => {
       <Sidebar
         onStartAddProject={handleStartAddProject}
         projects={projectState.projects}
+        onSelectProject={handleSelectProject}
       />
       {content}
     </main>
