@@ -9,6 +9,12 @@
 
 [![project screenshot][https://github.com/zach0811/project-management-app/tree/main/public/appScreenshot.png]]
 
+
+##second image
+
+[![project screenshot](https://github.com/user/project-management-app/raw/main/public/appScreenshot.png)](https://example.com)
+
+
 ### Prerequisites
 
 * npm
